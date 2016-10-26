@@ -1,8 +1,9 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var Agenda = require('agenda');
-var mongoConnectionString = "mongodb://127.0.0.1/agenda";
-var agenda = new Agenda({db: {address: mongoConnectionString}});
+var agendaConnectionString = "mongodb://127.0.0.1/agenda";
+var dataConnectionString = "mongodb://127.0.0.1/data";
+var agenda = new Agenda({db: {address: agendaConnectionString}});
 
 //************************************
 // Agenda Job Configuration
@@ -17,7 +18,7 @@ agenda.define('ping', function(job, done) {
 
 // Wait for Agenda to connect to the DB
 agenda.on('ready', function(){
-  
+
   // Grab all the jobs from the DB and kick them off
   agenda.jobs({name: 'ping'}, function(err, jobs){
     jobs.forEach(function(job){
@@ -60,5 +61,12 @@ app.get('/jobs', function(req, res, next){
 });
 
 //TODO delete job
+
+//Used only for development
+app.get('/nuke', function(req, res, next){
+  agenda.cancel({name: 'ping'}, function(err, numRemoved) {
+    res.status(200).json(numRemoved);
+});
+});
 
 app.listen(3000);
