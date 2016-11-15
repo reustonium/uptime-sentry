@@ -1,3 +1,8 @@
+import axios from 'axios'
+
 export function fetchJobs () {
-  return Promise.resolve(['job1', 'job2', 'job3'])
+  return axios.get('http://localhost:3000/jobs')
+    .then(function (response) {
+      return response.data
+    })
 }

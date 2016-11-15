@@ -3,12 +3,11 @@
   <h1>Jobs</h1>
   <p>{{msg}}</p>
   <p>There are {{jobs.length}} jobs</p>
-  <ul v-if="jobs.length > 0">
+  <ul>
     <li v-for="job in jobs">
       {{job}}
-    <li>
+    </li>
   </ul>
-  <button @click="fetchJobs">Get Job List</button>
   </div>
 </template>
 
@@ -25,10 +24,8 @@ export default {
   computed: mapState({
     jobs: state => state.jobs
   }),
-  methods: {
-    fetchJobs: function () {
-      this.$store.dispatch('FETCH_JOBS')
-    }
+  beforeMount () {
+    this.$store.dispatch('FETCH_JOBS')
   }
 }
 </script>

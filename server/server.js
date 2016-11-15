@@ -1,4 +1,5 @@
 var express = require('express');
+var cors = require('cors');
 var bodyParser = require('body-parser');
 var Agenda = require('agenda');
 var agendaConnectionString = "mongodb://127.0.0.1/agenda";
@@ -48,6 +49,7 @@ agenda.on('error', function(){
 //************************************
 var app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 app.post('/ping', function(req, res, next) {
   var data = req.body;
