@@ -1,21 +1,23 @@
 <template>
   <div class="jobs">
   <h1>Jobs</h1>
-  <p>{{msg}}</p>
   <p>There are {{jobs.length}} jobs</p>
-  <ul>
-    <li v-for="job in jobs">
-      {{job}}
-    </li>
-  </ul>
+  <jobDetail
+    v-for="job in jobs"
+    v-bind:job="job">
+  </JobDetail>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import JobDetail from './JobDetail'
 
 export default {
   name: 'jobs',
+  components: {
+    JobDetail
+  },
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
