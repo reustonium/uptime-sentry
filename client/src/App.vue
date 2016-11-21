@@ -1,28 +1,20 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <jobs></jobs>
-  </div>
+<div id="app">
+  <app-main></app-main>
+  <footer-bar></footer-bar>
+</div>
 </template>
 
 <script>
-import Jobs from './components/Jobs'
+import { AppMain, FooterBar } from 'components/layout'
 
 export default {
   name: 'app',
   components: {
-    Jobs
+    AppMain,
+    FooterBar
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style lang="sass">@import '~bulma';</style>
