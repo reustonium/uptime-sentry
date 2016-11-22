@@ -12,7 +12,7 @@
             <img src="~assets/logo.svg" :alt="pkginfo.description">
             <tooltip :label="'v' + pkginfo.version" placement="right" type="success" size="small" :no-animate="true" :always="true" :rounded="true">
               <div class="is-hidden-mobile">
-                <span class="vue">Vue</span><strong class="admin">Admin</strong>
+                <span class="vue">Uptime</span><strong class="admin"> Website Monitor</strong>
               </div>
             </tooltip>
           </a>
@@ -25,7 +25,7 @@
 
 <script>
 import Tooltip from 'vue-bulma-tooltip'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
 
@@ -40,11 +40,7 @@ export default {
   computed: mapGetters({
     pkginfo: 'pkg',
     sidebar: 'sidebar'
-  }),
-
-  methods: mapActions([
-    'toggleSidebar'
-  ])
+  })
 }
 </script>
 

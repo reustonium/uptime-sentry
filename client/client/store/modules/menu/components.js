@@ -42,15 +42,6 @@ export default {
       component: lazyLoading('components/Datepicker')
     },
     {
-      name: 'Emoji',
-      path: 'emoji',
-      meta: {
-        description: 'Emoji Component is based on emojione.com',
-        repository: 'https://github.com/vue-bulma/emoji'
-      },
-      component: lazyLoading('components/Emoji')
-    },
-    {
       name: 'Message',
       path: 'message',
       meta: {
