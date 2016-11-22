@@ -2,6 +2,13 @@
   <div id="app">
     <img src="./assets/logo.png">
     <hello></hello>
+    <div class="tile is-ancestor">
+      <div class="tile is-parent">
+        <div class="tile is-child box">
+          <h1>hi</h1>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -17,6 +24,8 @@ export default {
 </script>
 
 <style>
+@import "bulma"
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
