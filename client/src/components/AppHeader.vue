@@ -17,6 +17,7 @@
 <style lang="scss">
 .app-header {
   position: fixed;
+  top: 0px;
   min-width: 100%;
   box-shadow: 0 2px 3px rgba(17, 17, 17, 0.1), 0 0 0 1px rgba(17, 17, 17, 0.1);
 }
