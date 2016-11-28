@@ -1,20 +1,24 @@
 <template>
   <div id="app">
     <app-header></app-header>
-    <h1>test</h1>
+    <app-footer></app-footer>
   </div>
 </template>
 
 <script>
 import AppHeader from './components/AppHeader'
+import AppFooter from './components/AppFooter'
 
 export default {
   name: 'app',
   components: {
-    AppHeader
+    AppHeader,
+    AppFooter
   }
 }
 </script>
 <style lang="scss">
 @import '~bulma';
+$fa-font-path: '~font-awesome/fonts/';
+@import '~font-awesome/scss/font-awesome';
 </style>

@@ -4,6 +4,7 @@
       <nav class="nav has-shadow">
         <div class="nav-center">
           <a class="nav-item hero-header" href="/">
+            <img src="~assets/logo.png" alt="">
             <span class="uptime">Uptime</span> <strong class="webapp">Webapp</strong>
           </a>
         </div>
