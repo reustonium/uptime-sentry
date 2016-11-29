@@ -17,29 +17,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Google</td>
-            <td>Up</td>
-            <td>2 mins</td>
-            <td class="good">100%</td>
-            <td class="good">99.9%</td>
-            <td class="bad">99.9%</td>
-          </tr>
-          <tr>
-            <td>Facebox</td>
-            <td>Up</td>
-            <td>1 min</td>
-            <td>92%</td>
-            <td>91.9%</td>
-            <td>89.9%</td>
-          </tr>
-          <tr>
-            <td>NSA</td>
-            <td>Up</td>
-            <td>20 mins</td>
-            <td>100%</td>
-            <td>100%</td>
-            <td>100%</td>
+          <tr v-for="monitor in monitors">
+            <td>{{monitor.name}}</td>
+            <td>{{monitor.status}}</td>
+            <td>{{monitor.interval}}</td>
+            <td :class="{good: monitor.day > 99, bad: monitor.day < 90, okay: monitor.day < 99 && monitor.day > 90}">{{monitor.day}}%</td>
+            <td :class="{good: monitor.week > 99, bad: monitor.week < 90, okay: monitor.week < 99 && monitor.week > 90}">{{monitor.week}}%</td>
+            <td :class="{good: monitor.month > 99, bad: monitor.month < 90, okay: monitor.month < 99 && monitor.month > 90}">{{monitor.month}}%</td>
           </tr>
           <tr>
             <td colspan="6">
@@ -61,6 +45,36 @@
 
 <script>
 export default {
+  data () {
+    return {
+      monitors: [
+        {
+          name: 'Google',
+          status: 'up',
+          interval: '2 mins',
+          day: 100,
+          week: 99.9,
+          month: 99.9
+        },
+        {
+          name: 'Facebox',
+          status: 'up',
+          interval: '20 mins',
+          day: 92,
+          week: 91.9,
+          month: 88.9
+        },
+        {
+          name: 'NSA',
+          status: 'up',
+          interval: '2 mins',
+          day: 100,
+          week: 100,
+          month: 100
+        }
+      ]
+    }
+  }
 }
 </script>
 
@@ -74,6 +88,10 @@ export default {
 
   .bad {
     background: #f00;
+  }
+
+  .okay {
+    background: #a52;
   }
 }
 </style>
