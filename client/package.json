@@ -13,9 +13,11 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
+    "animate.css": "^3.5.2",
     "bulma": "^0.2.3",
     "font-awesome": "^4.7.0",
-    "vue": "^2.1.0"
+    "vue": "^2.1.0",
+    "vue-router": "^2.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",

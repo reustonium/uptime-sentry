@@ -11,19 +11,19 @@
         <div class="level-right">
           <div class="container">
             <div class="content has-text-centered">
-              <a class="button is-info is-outlined">
+              <router-link to="/newMonitor" class="button is-info is-outlined">
                 <span class="icon">
                   <i class="fa fa-plus-circle"></i>
                 </span>
                 <span>Add a new monitor</span>
-              </a>
+              </router-link>
             </div>
           </div>
         </div>
       </div>
       <table class="table is-striped">
         <thead>
-          <tr>
+          <tr class="title is-5">
             <th>Monitor</th>
             <th>Status</th>
             <th>Interval</th>
@@ -33,13 +33,21 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="monitor in monitors">
-            <td class="title">{{monitor.name}}</td>
-            <td :class="{good: monitor.status === 'up', bad: monitor.status !== 'up'}">{{monitor.status}}</td>
+          <tr class="title is-4" v-for="monitor in monitors">
+            <td>{{monitor.name}}</td>
+            <td :class="{up: monitor.status === 'up', down: monitor.status !== 'up'}">
+              {{monitor.status}}
+            </td>
             <td>{{monitor.interval}}</td>
-            <td :class="{good: monitor.day >= 99, bad: monitor.day < 90, okay: monitor.day < 99 && monitor.day > 90}">{{monitor.day}}%</td>
-            <td :class="{good: monitor.week >= 99, bad: monitor.week < 90, okay: monitor.week < 99 && monitor.week > 90}">{{monitor.week}}%</td>
-            <td :class="{good: monitor.month >= 99, bad: monitor.month < 90, okay: monitor.month < 99 && monitor.month > 90}">{{monitor.month}}%</td>
+            <td :class="{good: monitor.day >= 98, bad: monitor.day < 98}">
+              <strong>{{monitor.day}}%</strong>
+            </td>
+            <td :class="{good: monitor.week >= 98, bad: monitor.week < 98}">
+              <strong>{{monitor.week}}%</strong>
+            </td>
+            <td :class="{good: monitor.month >= 98, bad: monitor.month < 98}">
+              <strong>{{monitor.month}}%</strong>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -57,7 +65,7 @@ export default {
           status: 'up',
           interval: '2 mins',
           day: 100,
-          week: 99.9,
+          week: 97.9,
           month: 99.9
         },
         {
@@ -99,15 +107,19 @@ export default {
   }
 
   .good {
-    background: $green;
+    color: $green;
   }
 
   .bad {
-    background: $orange;
+    color: $orange;
   }
 
-  .okay {
-    background: $yellow;
+  .up {
+    background: $green;
+  }
+
+  .down {
+    background: $orange;
   }
 }
 </style>

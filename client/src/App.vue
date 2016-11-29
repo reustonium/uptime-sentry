@@ -3,8 +3,11 @@
     <app-header></app-header>
     <div class="container app-container">
       <div class="tile is-ancestor is-vertical">
-        <overview></overview>
-        <events></events>
+        <transition mode="out-in"
+          enter-active-class="fadeInDown"
+          leave-active-class="fadeOutDown" appear>
+          <router-view class="animated"></router-view>
+        </transition>
       </div>
     </div>
     <app-footer></app-footer>
@@ -12,24 +15,26 @@
 </template>
 
 <script>
-import { AppHeader, AppFooter, Overview, Events } from './components/'
+import { AppHeader, AppFooter } from './components/'
 
 export default {
   name: 'app',
   components: {
     AppHeader,
-    AppFooter,
-    Overview,
-    Events
+    AppFooter
   }
 }
 </script>
 <style lang="scss">
+@import '~animate.css';
+.animated {
+  animation-duration: .3s;
+}
 @import '~bulma';
 $fa-font-path: '~font-awesome/fonts/';
 @import '~font-awesome/scss/font-awesome';
 
 .app-container {
-  margin-top: 60px;
+  margin-top: 70px;
 }
 </style>

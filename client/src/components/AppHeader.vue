@@ -3,17 +3,19 @@
     <div class="hero-head">
       <nav class="nav has-shadow">
         <div class="nav-center">
-          <a class="nav-item hero-header" href="/">
+          <router-link to="/" class="nav-item hero-header">
             <img src="~assets/logo.png" alt="">
             <span class="uptime">Uptime</span> <strong class="webapp">Webapp</strong>
-          </a>
+          </router-link>
         </div>
       </nav>
     </div>
   </section>
 </template>
+
 <script>
 </script>
+
 <style lang="scss">
 .app-header {
   position: fixed;

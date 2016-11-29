@@ -86,6 +86,10 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
+animate.css@^3.5.2:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-3.5.2.tgz#91e668dc069a808e5e499514867b97aae0166c36"
+
 ansi-escapes@^1.1.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-1.4.0.tgz#d3a8a83b319aa67793662b13e761c7911422306e"
@@ -5592,6 +5596,10 @@ vue-loader@^10.0.0:
     vue-hot-reload-api "^2.0.1"
     vue-style-loader "^1.0.0"
     vue-template-es2015-compiler "^1.2.2"
+
+vue-router@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-2.1.0.tgz#c04d5ed79517571d4d668e00a85c8ea0d92c4f87"
 
 vue-style-loader@^1.0.0:
   version "1.0.0"

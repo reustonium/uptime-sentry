@@ -14,7 +14,6 @@
 </template>
 <style lang="scss">
 .footer {
-  position: absolute;
   bottom: 0px;
   width: 100%;
   padding-bottom: 20px;
