@@ -2,7 +2,8 @@
   <div id="app">
     <app-header></app-header>
     <div class="container app-container">
-      <div class="tile is-ancestor">
+      <div class="tile is-ancestor is-vertical">
+        <overview></overview>
         <monitor-card></monitor-card>
       </div>
     </div>
@@ -11,15 +12,15 @@
 </template>
 
 <script>
-import AppHeader from './components/AppHeader'
-import AppFooter from './components/AppFooter'
-import MonitorCard from './components/MonitorCard'
+import { AppHeader, AppFooter, Overview, MonitorCard } from './components/'
+console.log(AppHeader)
 
 export default {
   name: 'app',
   components: {
     AppHeader,
     AppFooter,
+    Overview,
     MonitorCard
   }
 }
