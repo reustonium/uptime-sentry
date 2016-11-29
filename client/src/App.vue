@@ -4,7 +4,7 @@
     <div class="container app-container">
       <div class="tile is-ancestor is-vertical">
         <overview></overview>
-        <monitor-card></monitor-card>
+        <activity></activity>
       </div>
     </div>
     <app-footer></app-footer>
@@ -12,8 +12,7 @@
 </template>
 
 <script>
-import { AppHeader, AppFooter, Overview, MonitorCard } from './components/'
-console.log(AppHeader)
+import { AppHeader, AppFooter, Overview, Activity } from './components/'
 
 export default {
   name: 'app',
@@ -21,7 +20,7 @@ export default {
     AppHeader,
     AppFooter,
     Overview,
-    MonitorCard
+    Activity
   }
 }
 </script>

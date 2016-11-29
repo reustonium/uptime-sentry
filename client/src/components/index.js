@@ -5,3 +5,5 @@ export AppFooter from './AppFooter'
 export Overview from './Overview'
 
 export MonitorCard from './MonitorCard'
+
+export Activity from './Activity'

@@ -21,9 +21,9 @@
             <td>Google</td>
             <td>Up</td>
             <td>2 mins</td>
-            <td>100%</td>
-            <td>99.9%</td>
-            <td>99.9%</td>
+            <td class="good">100%</td>
+            <td class="good">99.9%</td>
+            <td class="bad">99.9%</td>
           </tr>
           <tr>
             <td>Facebox</td>
@@ -41,6 +41,18 @@
             <td>100%</td>
             <td>100%</td>
           </tr>
+          <tr>
+            <td colspan="6">
+              <div class="content has-text-centered">
+                <a class="button is-primary is-outlined">
+                  <span class="icon">
+                    <i class="fa fa-plus-circle"></i>
+                  </span>
+                  <span>Add a new monitor</span>
+                </a>
+              </div>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -55,5 +67,13 @@ export default {
 <style scoped lang="scss">
 .table {
   margin-top: 20px;
+
+  .good {
+    background: #0f0;
+  }
+
+  .bad {
+    background: #f00;
+  }
 }
 </style>
