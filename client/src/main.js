@@ -2,13 +2,13 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App'
 import Main from './components/Main.vue'
+import AddMonitor from './components/AddMonitor.vue'
 
 Vue.use(VueRouter)
 
-const Comp = { template: '<div>MY THING</div>' }
 const routes = [
   { path: '/', component: Main },
-  { path: '/newMonitor', component: Comp }
+  { path: '/addMonitor', component: AddMonitor }
 ]
 const router = new VueRouter({
   routes

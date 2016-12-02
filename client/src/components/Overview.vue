@@ -11,7 +11,7 @@
         <div class="level-right">
           <div class="container">
             <div class="content has-text-centered">
-              <router-link to="/newMonitor" class="button is-info is-outlined">
+              <router-link to="/addMonitor" class="button is-info is-outlined">
                 <span class="icon">
                   <i class="fa fa-plus-circle"></i>
                 </span>

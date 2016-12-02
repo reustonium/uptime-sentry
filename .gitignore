@@ -38,3 +38,6 @@ jspm_packages
 
 # mongodb
 data
+
+# tools
+.wakatime-project
