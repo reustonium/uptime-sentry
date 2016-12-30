@@ -2,7 +2,7 @@
   "projectName": "uptime",
   "projectOwner": "reustonium",
   "files": [
-    ".github/CONTRIBUTORS.md"
+    "CONTRIBUTORS.md"
   ],
   "imageSize": 100,
   "commit": false,

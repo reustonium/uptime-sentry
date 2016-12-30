@@ -17,7 +17,7 @@ This repository contains:
 
 - [Background](#background)
 - [Prerequisites](#Prerequisites)
-- [Installation](#installation)
+- [Running Uptime](#running-uptime)
 - [Usage](#usage)
   - [Adding a Monitor](#adding-a-monitor)
 - [Contribute](#contribute)
@@ -30,13 +30,18 @@ Uptime's purpose is to provide a light-weight application for monitoring all of 
 
 ## Prerequisites
 
-Docker
+* Docker
+* Docker-Compose
 
-## Installing
+## Running Uptime
 
-Start Uptime by calling the Docker Compose Up command.
+1. Begin by cloning the repository  
+`git clone https://github.com/reustonium/uptime.git`
 
-`docker compose up`
+2. Start Uptime by calling the Docker Compose Up command.  
+`docker-compose up`
+
+3. Point your browser to `localhost:8080`
 
 ## Usage
 
@@ -54,7 +59,7 @@ Please read [CONTRIBUTING.md](.github/CONTRIBUTING.md) for more details.
 4. `Push` your `commits` to the `branch`
 5. Submit a `pull request`
 
-Check also the [list of contributors](.github/CONTRIBUTORS.md) who helped on this project.
+Check also the [list of contributors](CONTRIBUTORS.md) who helped on this project.
 
 ## Changelog
 
