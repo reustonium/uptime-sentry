@@ -44,7 +44,7 @@ Start Uptime by calling the Docker Compose Up command.
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
+Please read [CONTRIBUTING.md](.github/CONTRIBUTING.md) for more details.
 
 > TLDR
 
@@ -54,7 +54,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
 4. `Push` your `commits` to the `branch`
 5. Submit a `pull request`
 
-Check also the [list of contributors](CONTRIBUTORS.md) who helped on this project.
+Check also the [list of contributors](.github/CONTRIBUTORS.md) who helped on this project.
 
 ## Changelog
 
