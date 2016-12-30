@@ -1,0 +1,21 @@
+{
+  "projectName": "uptime",
+  "projectOwner": "reustonium",
+  "files": [
+    ".github/CONTRIBUTORS.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "reustonium",
+      "name": "Andy Ruestow",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1432186?v=3",
+      "profile": "https://github.com/reustonium",
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    }
+  ]
+}

@@ -11,7 +11,7 @@ Ensure that your `pull request` has followed all the steps below:
 - [ ] Code compilation
 - [ ] All tests passing
 - [ ] Extended the documentation, if applicable
-- [ ] Added myself to the CONTRIBUTORS file
+- [ ] I want to be added to the CONTRIBUTORS file
 
 ### Description
 
