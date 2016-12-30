@@ -19,8 +19,9 @@ This repository contains:
 - [Prerequisites](#Prerequisites)
 - [Installation](#installation)
 - [Usage](#usage)
-  - [Adding a Monitor](#adding a monitor)
+  - [Adding a Monitor](#adding-a-monitor)
 - [Contribute](#contribute)
+- [Change Log](#changelog)
 - [License](#license)
 
 ## Background
