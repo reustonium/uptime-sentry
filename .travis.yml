@@ -6,4 +6,4 @@ before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
   - export PATH=$HOME/.yarn/bin:$PATH
 script:
-  - cd server && npm install -g yarn && yarn install && yarn test
+  - cd server && yarn install && yarn test
