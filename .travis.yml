@@ -2,4 +2,4 @@ language: node_js
 node_js:
   - node
 script:
-  -"cd server && npm install -g yarn && yarn install && yarn test"
+  - cd server && npm install -g yarn && yarn install && yarn test
