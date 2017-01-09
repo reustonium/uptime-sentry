@@ -1,7 +1,8 @@
 # Uptime
 [![Under Development](https://img.shields.io/badge/under-development-orange.svg)]()
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
-[![Travis](https://img.shields.io/travis/reustonium/uptime.svg)]()
+[![Travis](https://img.shields.io/travis/reustonium/uptime.svg)](https://travis-ci.org/reustonium/uptime)
+[![Coverage Status](https://coveralls.io/repos/github/reustonium/uptime/badge.svg?branch=master)](https://coveralls.io/github/reustonium/uptime?branch=master)
 
 > Website uptime monitor
 

@@ -18,15 +18,54 @@ describe('Jobs', () => {
   });
 
   describe('/GET job', () => {
-    it('it should get all the jobs', (done) => {
+    it('should get all the jobs', (done) => {
       chai.request(server)
         .get('/job')
         .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.be.a('array');
-          res.body.length.should.be.eql(0);
-        done();
-      });
+            res.should.have.status(200);
+            res.body.should.be.a('array');
+            res.body.length.should.be.eql(0);
+          done();
+        });
+    });
+  });
+
+  describe('/POST job', () => {
+    it('should not POST a job with a missing URL paramter', (done) => {
+      let job = {
+        freq: 60
+      }
+
+      chai.request(server)
+        .post('/job')
+        .send(job)
+        .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.should.have.property('errors');
+            res.body.errors.should.have.property('url');
+            res.body.errors.url.should.have.property('kind').eql('required');
+          done();
+        });
+    });
+
+    it('should POST a job', (done) => {
+      let job = {
+        url: "http://google.com",
+        freq: 60
+      }
+
+      chai.request(server)
+        .post('/job')
+        .send(job)
+        .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('object')
+            res.body.should.have.property('message').eql('Job successfully added');
+            res.body.job.should.have.property('url');
+            res.body.job.should.have.property('freq');
+          done();
+        });
     });
   });
 
