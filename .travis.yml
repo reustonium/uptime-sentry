@@ -9,3 +9,4 @@ before_install:
   - export PATH=$HOME/.yarn/bin:$PATH
 script:
   - cd server && yarn install && yarn test
+  - yarn coverage
