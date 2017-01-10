@@ -16,7 +16,7 @@ function getJobs(req, res) {
 // POST /job to save a new job
 // ***************************
 function postJob(req, res) {
-  var newJob = new Job(req.body);
+  let newJob = new Job(req.body);
 
   newJob.save((err, job) => {
     if(err) {
@@ -28,4 +28,21 @@ function postJob(req, res) {
   });
 }
 
-module.exports = { getJobs, postJob };
+// ***********************************
+// GET /job/:id route to get job by id
+// ***********************************
+function getJob(req, res) {
+  Job.findById({_id: req.params.id})
+    .lean()
+    .exec((err, job) => {
+      if(err) res.send(err);
+      job.status = getStatusById(job.id);
+      res.json(job);
+  });
+}
+
+function getStatusById(id) {
+  return 'OK';
+}
+
+module.exports = { getJobs, postJob, getJob };

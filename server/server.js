@@ -30,6 +30,8 @@ app.use(cors());
 app.route('/job')
   .get(job.getJobs)
   .post(job.postJob);
+app.route('/job/:id')
+  .get(job.getJob);
 
 app.listen(3000);
 
