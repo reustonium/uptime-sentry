@@ -6,6 +6,7 @@ let cors = require('cors');
 let bodyParser = require('body-parser');
 let config = require('config');
 let job = require('./app/routes/job');
+let ping = require('./app/routes/ping');
 
 // ********
 // Database
@@ -32,6 +33,8 @@ app.route('/job')
   .post(job.postJob);
 app.route('/job/:id')
   .get(job.getJob);
+app.route('/ping')
+  .post(ping.postPing);
 
 app.listen(3000);
 

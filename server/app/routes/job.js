@@ -7,7 +7,7 @@ let Job = require('../model/job');
 function getJobs(req, res) {
   let query = Job.find({});
   query.exec((err, jobs) => {
-    if(err) res.send(err);
+    if (err) res.send(err);
     res.json(jobs)
   });
 }
@@ -19,11 +19,13 @@ function postJob(req, res) {
   let newJob = new Job(req.body);
 
   newJob.save((err, job) => {
-    if(err) {
+    if (err) {
       res.send(err);
-    }
-    else {
-      res.json({message: "Job successfully added", job});
+    } else {
+      res.json({
+        message: "Job successfully added",
+        job
+      });
     }
   });
 }
@@ -32,17 +34,23 @@ function postJob(req, res) {
 // GET /job/:id route to get job by id
 // ***********************************
 function getJob(req, res) {
-  Job.findById({_id: req.params.id})
+  Job.findById({
+    _id: req.params.id
+  })
     .lean()
     .exec((err, job) => {
-      if(err) res.send(err);
+      if (err) res.send(err);
       job.status = getStatusById(job.id);
       res.json(job);
-  });
+    });
 }
 
 function getStatusById(id) {
   return 'OK';
 }
 
-module.exports = { getJobs, postJob, getJob };
+module.exports = {
+  getJobs,
+  postJob,
+  getJob
+};
