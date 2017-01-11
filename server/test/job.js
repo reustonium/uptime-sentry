@@ -2,6 +2,7 @@ process.env.NODE_ENV = 'test';
 
 let mongoose = require('mongoose');
 let Job = require('../app/model/job');
+let Ping = require('../app/model/ping');
 
 let chai = require('chai');
 let chaiHttp = require('chai-http');
@@ -22,9 +23,9 @@ describe('Jobs', () => {
       chai.request(server)
         .get('/job')
         .end((err, res) => {
-            res.should.have.status(200);
-            res.body.should.be.a('array');
-            res.body.length.should.be.eql(0);
+          res.should.have.status(200);
+          res.body.should.be.a('array');
+          res.body.length.should.be.eql(0);
           done();
         });
     });
@@ -40,11 +41,11 @@ describe('Jobs', () => {
         .post('/job')
         .send(job)
         .end((err, res) => {
-            res.should.have.status(200);
-            res.body.should.be.a('object');
-            res.body.should.have.property('errors');
-            res.body.errors.should.have.property('url');
-            res.body.errors.url.should.have.property('kind').eql('required');
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          res.body.should.have.property('errors');
+          res.body.errors.should.have.property('url');
+          res.body.errors.url.should.have.property('kind').eql('required');
           done();
         });
     });
@@ -59,11 +60,11 @@ describe('Jobs', () => {
         .post('/job')
         .send(job)
         .end((err, res) => {
-            res.should.have.status(200);
-            res.body.should.be.a('object')
-            res.body.should.have.property('message').eql('Job successfully added');
-            res.body.job.should.have.property('url');
-            res.body.job.should.have.property('freq');
+          res.should.have.status(200);
+          res.body.should.be.a('object')
+          res.body.should.have.property('message').eql('Job successfully added');
+          res.body.job.should.have.property('url');
+          res.body.job.should.have.property('freq');
           done();
         });
     });
@@ -79,18 +80,48 @@ describe('Jobs', () => {
       job.save((err, job) => {
         chai.request(server)
           .get('/job/' + job.id)
-          .send(job)
           .end((err, res) => {
+            res.should.have.status(200);
+            res.should.be.a('object');
+            res.body.should.have.property('url');
+            res.body.should.have.property('freq');
+            res.body.should.have.property('_id').eql(job.id);
+            res.body.should.have.property('status');
+            done();
+          });
+      });
+
+    });
+  });
+
+  describe('/GET/:id job with status', () => {
+    it('should get a job and return UP status', (done) => {
+      let job = new Job({
+        url: "https://google.com",
+        freq: 60
+      });
+
+      job.save((err, job) => {
+        let ping = new Ping({
+          jobId: job.id,
+          status: 'UP',
+          responseTime: 134
+        });
+
+        ping.save((err, ping) => {
+          chai.request(server)
+            .get('/job/' + job.id)
+            .end((err, res) => {
               res.should.have.status(200);
               res.should.be.a('object');
               res.body.should.have.property('url');
               res.body.should.have.property('freq');
               res.body.should.have.property('_id').eql(job.id);
-              res.body.should.have.property('status');
-            done();
-          });
-      });
-
+              res.body.should.have.property('status').eql('UP');
+              done();
+            });
+        });
+      })
     });
   });
 });

@@ -1,4 +1,4 @@
 {
   "dbhost-agenda" : "mongodb://127.0.0.1/agenda-test",
-  "dbhostData" : "mongodb://127.0.0.1/data-test" 
+  "dbhostData" : "mongodb://127.0.0.1/data-test"
 }

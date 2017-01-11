@@ -1,5 +1,6 @@
 let mongoose = require('mongoose');
 let Job = require('../model/job');
+let Ping = require('../model/ping');
 
 // ******************************
 // GET /job route to get all jobs
@@ -46,7 +47,17 @@ function getJob(req, res) {
 }
 
 function getStatusById(id) {
-  return 'OK';
+  Ping.find()
+    .sort({
+      createdAt: -1
+    })
+    .limit(1)
+    .exec((err, ping) => {
+      if (err) {
+        return 'UNKNOWN';
+      }
+      return ping.status;
+    });
 }
 
 module.exports = {

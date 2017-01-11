@@ -3,8 +3,14 @@ let Schema = mongoose.Schema;
 
 let JobSchema = new Schema(
   {
-    url: {type: String, required: true},
-    freq: {type: Number, required: true}
+    url: {
+      type: String,
+      required: true
+    },
+    freq: {
+      type: Number,
+      required: true
+    }
   },
   {
     versionKey: false
