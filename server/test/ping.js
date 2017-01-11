@@ -28,11 +28,11 @@ describe('Ping', () => {
         .post('/ping')
         .send(ping)
         .end((err, res) => {
-          res.should.have.status(200);
+          res.should.have.property('status').eql(200);
           res.body.should.be.a('object');
           res.body.should.have.property('errors');
           res.body.errors.should.have.property('jobId');
-          res.body.errors.url.should.have.property('kind').eql('required');
+          res.body.errors.jobId.should.have.property('kind').eql('required');
           done();
         });
     });
