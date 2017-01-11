@@ -78,7 +78,7 @@ describe('Ping', () => {
     it('should POST a new ping', (done) => {
       let ping = {
         status: 'up',
-        jobId: 1,
+        jobId: '1',
         responseTime: 101
       };
 
@@ -90,7 +90,7 @@ describe('Ping', () => {
           res.body.should.be.a('object');
           res.body.should.have.property('message').eql('Ping successfully added');
           res.body.ping.should.have.property('status').eql('up');
-          res.body.ping.should.have.property('jobId').eql(1);
+          res.body.ping.should.have.property('jobId').eql('1');
           res.body.ping.should.have.property('responseTime').eql(101);
           done();
         });

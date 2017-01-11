@@ -41,22 +41,22 @@ function getJob(req, res) {
     .lean()
     .exec((err, job) => {
       if (err) res.send(err);
-      job.status = getStatusById(job.id);
-      res.json(job);
-    });
-}
-
-function getStatusById(id) {
-  Ping.find()
-    .sort({
-      createdAt: -1
-    })
-    .limit(1)
-    .exec((err, ping) => {
-      if (err) {
-        return 'UNKNOWN';
-      }
-      return ping.status;
+      Ping.find({
+        jobId: job._id
+      })
+        .sort({
+          createdAt: -1
+        })
+        .limit(1)
+        .exec((err, ping) => {
+          if (err) res.send(err);
+          if (ping.length > 0) {
+            job.status = ping[0].status;
+          } else {
+            job.status = 'UNKNOWN';
+          }
+          res.json(job);
+        });
     });
 }
 

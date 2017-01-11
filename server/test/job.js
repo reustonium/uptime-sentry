@@ -71,7 +71,7 @@ describe('Jobs', () => {
   });
 
   describe('/GET/:id job', () => {
-    it('should get a job with a given id', (done) => {
+    it('should get a job with a given id and no status', (done) => {
       let job = new Job({
         url: "http://google.com",
         freq: 60
@@ -81,12 +81,13 @@ describe('Jobs', () => {
         chai.request(server)
           .get('/job/' + job.id)
           .end((err, res) => {
+            console.log(res.body);
             res.should.have.status(200);
             res.should.be.a('object');
             res.body.should.have.property('url');
             res.body.should.have.property('freq');
             res.body.should.have.property('_id').eql(job.id);
-            res.body.should.have.property('status');
+            res.body.should.have.property('status').eql('UNKNOWN');
             done();
           });
       });
@@ -103,7 +104,7 @@ describe('Jobs', () => {
 
       job.save((err, job) => {
         let ping = new Ping({
-          jobId: job.id,
+          jobId: job._id,
           status: 'UP',
           responseTime: 134
         });
