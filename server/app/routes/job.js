@@ -41,22 +41,28 @@ function getJob(req, res) {
     .lean()
     .exec((err, job) => {
       if (err) res.send(err);
+
       Ping.find({
         jobId: job._id
       })
         .sort({
-          createdAt: -1
+          pingedAt: -1
         })
-        .limit(1)
-        .exec((err, ping) => {
+        .exec((err, pings) => {
           if (err) res.send(err);
-          if (ping.length > 0) {
-            job.status = ping[0].status;
+          if (pings.length > 0) {
+            job.status = pings[0].status;
+            job.responseTimes = pings.map((ping) => {
+              return ping.responseTime;
+            }).reverse();
           } else {
             job.status = 'UNKNOWN';
+            job.responseTimes = [];
           }
           res.json(job);
         });
+
+
     });
 }
 

@@ -14,8 +14,10 @@ chai.use(chaiHttp);
 describe('Jobs', () => {
   beforeEach((done) => {
     Job.remove({}, (err) => {
+    }).then(Ping.remove({}, (err) => {
       done();
-    });
+    }))
+
   });
 
   describe('/GET job', () => {
@@ -81,7 +83,6 @@ describe('Jobs', () => {
         chai.request(server)
           .get('/job/' + job.id)
           .end((err, res) => {
-            console.log(res.body);
             res.should.have.status(200);
             res.should.be.a('object');
             res.body.should.have.property('url');
@@ -106,7 +107,8 @@ describe('Jobs', () => {
         let ping = new Ping({
           jobId: job._id,
           status: 'UP',
-          responseTime: 134
+          responseTime: 134,
+          pingedAt: new Date("1/1/2017")
         });
 
         ping.save((err, ping) => {
@@ -123,6 +125,54 @@ describe('Jobs', () => {
             });
         });
       })
+    });
+  });
+
+  describe('/GET/:id job with responseTime array', () => {
+    it('should get a job and return an array of response times', (done) => {
+      let job = new Job({
+        url: "https://google.com",
+        freq: 60
+      });
+
+      job.save((err, job) => {
+        let ping1 = new Ping({
+          jobId: job._id,
+          status: 'UP',
+          responseTime: 100,
+          pingedAt: new Date("1/1/2017")
+        });
+
+        let ping2 = new Ping({
+          jobId: job._id,
+          status: 'UP',
+          responseTime: 101,
+          pingedAt: new Date("1/2/2017")
+        });
+
+        let ping3 = new Ping({
+          jobId: job._id,
+          status: 'UP',
+          responseTime: 102,
+          pingedAt: new Date("1/3/2017")
+        });
+
+        Ping.insertMany([ping1, ping2, ping3], (err, pings) => {
+          chai.request(server)
+            .get('/job/' + job.id)
+            .end((err, res) => {
+              res.should.have.status(200);
+              res.should.be.a('object');
+              res.body.should.have.property('url');
+              res.body.should.have.property('freq');
+              res.body.should.have.property('_id').eql(job.id);
+              res.body.should.have.property('status').eql('UP');
+              res.body.should.have.property('responseTimes').eql([100, 101, 102]);
+              done();
+            });
+        });
+
+      });
     });
   });
 });

@@ -14,6 +14,10 @@ let PingSchema = new Schema(
     responseTime: {
       type: Number,
       required: true
+    },
+    pingedAt: {
+      type: Date,
+      required: true
     }
   },
   {

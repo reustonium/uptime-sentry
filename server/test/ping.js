@@ -21,7 +21,8 @@ describe('Ping', () => {
     it('should not post with a missing jobId parameter', (done) => {
       let ping = {
         status: 'up',
-        responseTime: 134
+        responseTime: 134,
+        pingedAt: new Date("1/1/2017")
       };
 
       chai.request(server)
@@ -40,7 +41,8 @@ describe('Ping', () => {
     it('should not POST with a missing status parameter', (done) => {
       let ping = {
         jobId: 1,
-        responseTime: 101
+        responseTime: 101,
+        pingedAt: new Date("1/1/2017")
       };
 
       chai.request(server)
@@ -59,7 +61,8 @@ describe('Ping', () => {
     it('should not POST with a missing responseTime parameter', (done) => {
       let ping = {
         status: 'up',
-        jobId: 1
+        jobId: 1,
+        pingedAt: new Date("1/1/2017")
       };
 
       chai.request(server)
@@ -75,11 +78,32 @@ describe('Ping', () => {
         });
     });
 
+    it('should not POST with a missing pingedAt parameter', (done) => {
+      let ping = {
+        status: 'up',
+        jobId: 1,
+        responseTime: 134
+      };
+
+      chai.request(server)
+        .post('/ping')
+        .send(ping)
+        .end((err, res) => {
+          res.should.have.property('status').eql(200);
+          res.body.should.be.a('object');
+          res.body.should.have.property('errors');
+          res.body.errors.should.have.property('pingedAt');
+          res.body.errors.pingedAt.should.have.property('kind').eql('required');
+          done();
+        });
+    });
+
     it('should POST a new ping', (done) => {
       let ping = {
         status: 'up',
         jobId: '1',
-        responseTime: 101
+        responseTime: 101,
+        pingedAt: new Date("1/1/2017")
       };
 
       chai.request(server)
