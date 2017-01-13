@@ -8,6 +8,7 @@ let config = require('config');
 let job = require('./app/routes/job');
 let ping = require('./app/routes/ping');
 let status = require('./app/routes/status');
+let pingWorker = require('./app/ping-worker');
 
 // ********
 // Database

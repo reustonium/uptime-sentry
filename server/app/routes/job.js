@@ -1,6 +1,7 @@
 let mongoose = require('mongoose');
 let Job = require('../model/job');
 let Ping = require('../model/ping');
+let pingWorker = require('../ping-worker');
 
 // ******************************
 // GET /job route to get all jobs
@@ -18,6 +19,7 @@ function getJobs(req, res) {
 // ***************************
 function postJob(req, res) {
   let newJob = new Job(req.body);
+  pingWorker.createJob(newJob);
 
   newJob.save((err, job) => {
     if (err) {
