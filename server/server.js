@@ -7,6 +7,7 @@ let bodyParser = require('body-parser');
 let config = require('config');
 let job = require('./app/routes/job');
 let ping = require('./app/routes/ping');
+let status = require('./app/routes/status');
 
 // ********
 // Database
@@ -37,7 +38,8 @@ app.route('/job/:id')
   .get(job.getJob);
 app.route('/ping')
   .post(ping.postPing);
-
+app.route('/status')
+  .post(status.postStatus);
 app.listen(3000);
 
 module.exports = app;
