@@ -2,7 +2,6 @@ process.env.NODE_ENV = 'test';
 
 let mongoose = require('mongoose');
 let Job = require('../app/model/job');
-let Ping = require('../app/model/ping');
 
 let chai = require('chai');
 let chaiHttp = require('chai-http');
@@ -14,9 +13,8 @@ chai.use(chaiHttp);
 describe('Jobs', () => {
   beforeEach((done) => {
     Job.remove({}, (err) => {
-    }).then(Ping.remove({}, (err) => {
-      done();
-    }))
+      done()
+    });
 
   });
 
@@ -88,7 +86,7 @@ describe('Jobs', () => {
             res.body.should.have.property('url');
             res.body.should.have.property('freq');
             res.body.should.have.property('_id').eql(job.id);
-            res.body.should.have.property('status').eql('UNKNOWN');
+            res.body.should.not.have.property('status');
             done();
           });
       });
@@ -100,30 +98,29 @@ describe('Jobs', () => {
     it('should get a job and return UP status', (done) => {
       let job = new Job({
         url: "https://google.com",
-        freq: 60
+        freq: 60,
+        status: 'UP',
+        pings: [
+          {
+            response: 200,
+            responseTime: 134,
+            pingedAt: new Date("1/1/2017")
+          }
+        ]
       });
 
       job.save((err, job) => {
-        let ping = new Ping({
-          jobId: job._id,
-          status: 'UP',
-          responseTime: 134,
-          pingedAt: new Date("1/1/2017")
-        });
-
-        ping.save((err, ping) => {
-          chai.request(server)
-            .get('/job/' + job.id)
-            .end((err, res) => {
-              res.should.have.status(200);
-              res.should.be.a('object');
-              res.body.should.have.property('url');
-              res.body.should.have.property('freq');
-              res.body.should.have.property('_id').eql(job.id);
-              res.body.should.have.property('status').eql('UP');
-              done();
-            });
-        });
+        chai.request(server)
+          .get('/job/' + job.id)
+          .end((err, res) => {
+            res.should.have.status(200);
+            res.should.be.a('object');
+            res.body.should.have.property('url');
+            res.body.should.have.property('freq');
+            res.body.should.have.property('_id').eql(job.id);
+            res.body.should.have.property('status').eql('UP');
+            done();
+          });
       })
     });
   });
@@ -132,45 +129,38 @@ describe('Jobs', () => {
     it('should get a job and return an array of response times', (done) => {
       let job = new Job({
         url: "https://google.com",
-        freq: 60
+        freq: 60,
+        status: 'UP',
+        pings: [{
+          response: 200,
+          responseTime: 100,
+          pingedAt: new Date("1/1/2017")
+        }, {
+          response: 200,
+          responseTime: 101,
+          pingedAt: new Date("1/2/2017")
+        }, {
+          response: 200,
+          responseTime: 102,
+          pingedAt: new Date("1/3/2017")
+        }]
       });
 
       job.save((err, job) => {
-        let ping1 = new Ping({
-          jobId: job._id,
-          status: 'UP',
-          responseTime: 100,
-          pingedAt: new Date("1/1/2017")
-        });
-
-        let ping2 = new Ping({
-          jobId: job._id,
-          status: 'UP',
-          responseTime: 101,
-          pingedAt: new Date("1/2/2017")
-        });
-
-        let ping3 = new Ping({
-          jobId: job._id,
-          status: 'UP',
-          responseTime: 102,
-          pingedAt: new Date("1/3/2017")
-        });
-
-        Ping.insertMany([ping1, ping2, ping3], (err, pings) => {
-          chai.request(server)
-            .get('/job/' + job.id)
-            .end((err, res) => {
-              res.should.have.status(200);
-              res.should.be.a('object');
-              res.body.should.have.property('url');
-              res.body.should.have.property('freq');
-              res.body.should.have.property('_id').eql(job.id);
-              res.body.should.have.property('status').eql('UP');
-              res.body.should.have.property('responseTimes').eql([100, 101, 102]);
-              done();
-            });
-        });
+        chai.request(server)
+          .get('/job/' + job.id)
+          .end((err, res) => {
+            console.log(JSON.stringify());
+            res.should.have.status(200);
+            res.should.be.a('object');
+            res.body.should.have.property('url');
+            res.body.should.have.property('freq');
+            res.body.should.have.property('_id').eql(job.id);
+            res.body.should.have.property('status').eql('UP');
+            let responseTimes = res.body.pings.map(x => x.responseTime);
+            responseTimes.should.eql([100, 101, 102]);
+            done();
+          });
 
       });
     });

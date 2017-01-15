@@ -1,7 +1,6 @@
 let config = require('config');
 let Agenda = require('agenda');
 let request = require('request');
-let Ping = require('./model/ping');
 
 let agenda = new Agenda({
   db: {
@@ -27,16 +26,7 @@ agenda.define('ping', function(job, done) {
     url: job.attrs.data.url,
     time: true
   }, (error, response) => {
-    console.log('response from the agenda job:');
-    console.log(response);
     var url = job.attrs.data.url;
-    var ping = new Ping({
-      jobId: job.attrs.id,
-      status: response.statusCode.toString(),
-      responseTime: response.elapsedTime,
-      pingeddAt: Date.now()
-    });
-    ping.save();
   });
   done();
 });

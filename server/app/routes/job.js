@@ -1,6 +1,5 @@
 let mongoose = require('mongoose');
 let Job = require('../model/job');
-let Ping = require('../model/ping');
 let pingWorker = require('../ping-worker');
 
 // ******************************
@@ -42,29 +41,11 @@ function getJob(req, res) {
   })
     .lean()
     .exec((err, job) => {
-      if (err) res.send(err);
-
-      Ping.find({
-        jobId: job._id
-      })
-        .sort({
-          pingedAt: -1
-        })
-        .exec((err, pings) => {
-          if (err) res.send(err);
-          if (pings.length > 0) {
-            job.status = pings[0].status;
-            job.responseTimes = pings.map((ping) => {
-              return ping.responseTime;
-            }).reverse();
-          } else {
-            job.status = 'UNKNOWN';
-            job.responseTimes = [];
-          }
-          res.json(job);
-        });
-
-
+      if (err) {
+        res.send(err);
+      } else {
+        res.json(job);
+      }
     });
 }
 

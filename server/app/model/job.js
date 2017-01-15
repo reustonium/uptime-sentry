@@ -10,7 +10,28 @@ let JobSchema = new Schema(
     freq: {
       type: Number,
       required: true
-    }
+    },
+    status: {
+      type: String,
+      required: false
+    },
+    pings: [
+      {
+        response: {
+          type: Number,
+          required: true
+        },
+        responseTime: {
+          type: Number,
+          required: true
+        },
+        pingedAt: {
+          type: Date,
+          required: true
+        }
+      }
+    ]
+
   },
   {
     versionKey: false
