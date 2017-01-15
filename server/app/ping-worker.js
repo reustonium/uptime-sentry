@@ -5,7 +5,7 @@ let Ping = require('./model/ping');
 
 let agenda = new Agenda({
   db: {
-    address: config.dbhostAgenda
+    address: config.dbhost
   }
 });
 

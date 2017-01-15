@@ -13,7 +13,7 @@ let pingWorker = require('./app/ping-worker');
 // ********
 // Database
 // ********
-mongoose.connect(config.dbhostData);
+mongoose.connect(config.dbhost);
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
