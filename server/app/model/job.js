@@ -13,7 +13,7 @@ let JobSchema = new Schema(
     },
     status: {
       type: String,
-      required: false
+      required: true
     },
     pings: [
       {

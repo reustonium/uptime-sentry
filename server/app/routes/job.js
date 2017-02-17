@@ -18,6 +18,7 @@ function getJobs(req, res) {
 // ***************************
 function postJob(req, res) {
   let newJob = new Job(req.body);
+  newJob.status = 'created';
   pingWorker.createJob(newJob);
 
   newJob.save((err, job) => {
