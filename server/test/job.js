@@ -71,10 +71,11 @@ describe('Jobs', () => {
   });
 
   describe('/GET/:id job', () => {
-    it('should get a job with a given id and no status', (done) => {
+    it('should get a job with a given id and "created" status', (done) => {
       let job = new Job({
         url: "http://google.com",
-        freq: 60
+        freq: 60,
+        status: 'created'
       });
 
       job.save((err, job) => {
@@ -86,7 +87,7 @@ describe('Jobs', () => {
             res.body.should.have.property('url');
             res.body.should.have.property('freq');
             res.body.should.have.property('_id').eql(job.id);
-            res.body.should.not.have.property('status');
+            res.body.should.have.property('status').eql('created');
             done();
           });
       });

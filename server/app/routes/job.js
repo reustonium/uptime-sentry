@@ -19,12 +19,11 @@ function getJobs(req, res) {
 function postJob(req, res) {
   let newJob = new Job(req.body);
   newJob.status = 'created';
-  pingWorker.createJob(newJob);
-
   newJob.save((err, job) => {
     if (err) {
       res.send(err);
     } else {
+      pingWorker.createJob(newJob);
       res.json({
         message: "Job successfully added",
         job
