@@ -9,6 +9,7 @@ function getJobs(req, res) {
   let query = Job.find({});
   query.exec((err, jobs) => {
     if (err) res.send(err);
+    console.log(jobs);
     res.json(jobs)
   });
 }

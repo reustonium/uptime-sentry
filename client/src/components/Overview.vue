@@ -35,18 +35,18 @@
         <tbody>
           <tr class="title is-4" v-for="monitor in monitors">
             <td>{{monitor.name}}</td>
-            <td :class="{up: monitor.status === 'up', down: monitor.status !== 'up'}">
+            <td :class="{up: monitor.status === 'up', down: monitor.status !== 'up', created: monitor.status === 'created'}">
               {{monitor.status}}
             </td>
-            <td>{{monitor.interval}}</td>
-            <td :class="{good: monitor.day >= 98, bad: monitor.day < 98}">
-              <strong>{{monitor.day}}%</strong>
+            <td>{{monitor.freq}} minutes</td>
+            <td :class="{good: monitor.uptimes.day >= 98, bad: monitor.uptimes.day < 98}">
+              <strong>{{monitor.uptimes.day}}%</strong>
             </td>
-            <td :class="{good: monitor.week >= 98, bad: monitor.week < 98}">
-              <strong>{{monitor.week}}%</strong>
+            <td :class="{good: monitor.uptimes.week >= 98, bad: monitor.uptimes.week < 98}">
+              <strong>{{monitor.uptimes.week}}%</strong>
             </td>
-            <td :class="{good: monitor.month >= 98, bad: monitor.month < 98}">
-              <strong>{{monitor.month}}%</strong>
+            <td :class="{good: monitor.uptimes.month >= 98, bad: monitor.uptimes.month < 98}">
+              <strong>{{monitor.uptimes.month}}%</strong>
             </td>
           </tr>
         </tbody>
@@ -55,36 +55,22 @@
   </div>
 </template>
 
-<script>
+<script type="text/javascript">
 export default {
+  mounted () {
+    this.fetchData()
+  },
   data () {
     return {
-      monitors: [
-        {
-          name: 'Google',
-          status: 'up',
-          interval: '2 mins',
-          day: 100,
-          week: 97.9,
-          month: 99.9
-        },
-        {
-          name: 'Facebox',
-          status: 'down',
-          interval: '20 mins',
-          day: 92,
-          week: 91.9,
-          month: 88.9
-        },
-        {
-          name: 'NSA',
-          status: 'up',
-          interval: '2 mins',
-          day: 100,
-          week: 100,
-          month: 100
-        }
-      ]
+      monitors: []
+    }
+  },
+  methods: {
+    fetchData () {
+      this.$http.get('http://localhost:3000/job/').then(res => {
+        console.log(JSON.stringify(res.body))
+        this.monitors = res.body
+      })
     }
   }
 }
@@ -120,6 +106,10 @@ export default {
 
   .down {
     background: $orange;
+  }
+
+  .created {
+    background: $primary;
   }
 }
 </style>

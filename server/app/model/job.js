@@ -3,6 +3,10 @@ let Schema = mongoose.Schema;
 
 let JobSchema = new Schema(
   {
+    name: {
+      type: String,
+      required: false
+    },
     url: {
       type: String,
       required: true
@@ -14,6 +18,20 @@ let JobSchema = new Schema(
     status: {
       type: String,
       required: true
+    },
+    uptimes: {
+      day: {
+        type: Number,
+        required: false
+      },
+      week: {
+        type: Number,
+        required: false
+      },
+      month: {
+        type: Number,
+        required: false
+      }
     },
     pings: [
       {
@@ -31,7 +49,6 @@ let JobSchema = new Schema(
         }
       }
     ]
-
   },
   {
     versionKey: false

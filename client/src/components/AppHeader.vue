@@ -4,7 +4,6 @@
       <nav class="nav has-shadow">
         <div class="nav-center">
           <router-link to="/" class="nav-item hero-header">
-            <img src="~assets/logo.png" alt="">
             <span class="uptime">Uptime</span> <strong class="webapp">Webapp</strong>
           </router-link>
         </div>
@@ -18,6 +17,7 @@
 
 <style lang="scss">
 .app-header {
+  z-index: 1024;
   position: fixed;
   top: 0px;
   min-width: 100%;
