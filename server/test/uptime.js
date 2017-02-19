@@ -65,4 +65,21 @@ describe('Uptime', () => {
       expect(Uptime.monthlyPings(oldPing)).to.not.be.ok;
     });
   });
+
+  describe('calculateUptime', () => {
+    it('should return 100% uptime if all statuses are 200', () => {
+      let pings = [{
+        response: 200,
+        responseTime: 100,
+        pingedAt: moment().subtract(1, 'minute')
+      },
+        {
+          response: 200,
+          responseTime: 100,
+          pingedAt: moment().subtract(2, 'minutes')
+        }];
+
+      expect(Uptime.uptime(pings)).to.eql(100);
+    });
+  });
 });

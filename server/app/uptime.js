@@ -18,19 +18,33 @@ function dailyPings(ping) {
 }
 
 // Keep the pings that happened within the last 7 days
-var weeklyPings = function(ping) {
+function weeklyPings(ping) {
   let aWeekAgo = moment().subtract(7, 'days');
   return moment(ping.pingedAt).isSameOrAfter(aWeekAgo);
 }
 
 // Keep the pings that happened within the last 1 month
-var monthlyPings = function(ping) {
+function monthlyPings(ping) {
   let aMonthAgo = moment().subtract(1, 'months');
   return moment(ping.pingedAt).isSameOrAfter(aMonthAgo);
 }
 
 // Calculate the Uptime for the pings
-var uptime = function(pings) {}
+function uptime(pings) {
+  let uptimeMiliseconds = 0;
+  let downtimeMiliseconds = 0;
+
+  for (let i = 1; i < pings.length; i++) {
+    let duration = moment(pings[i].pingedAt).diff(moment(pings[i - 1].pingedAt));
+    if (pings[i].response === 200) {
+      uptimeMiliseconds += duration;
+    } else {
+      downtimeMiliseconds += duration;
+    }
+  }
+
+  return uptimeMiliseconds * 100 / (uptimeMiliseconds + downtimeMiliseconds)
+}
 
 module.exports = {
   calculateUptime: calculateUptime,
