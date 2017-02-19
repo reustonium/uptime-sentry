@@ -29,14 +29,14 @@
 
       <p class="control">
         <button class="button is-primary">Submit</button>
-        <button class="button is-link">Cancel</button>
+        <router-link to="/" class="button is-link">Cancel</router-link>
       </p>
-      
+
     </div>
   </div>
 </template>
 
-<script>
+<script type="text/javascript">
 export default {
 }
 </script>
