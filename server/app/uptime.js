@@ -5,9 +5,9 @@ function calculateUptime(pings) {
   var weekly = pings.filter(weeklyPings);
   var monthly = pings.filter(monthlyPings);
   return {
-    day: 100,
-    week: 98,
-    month: 97
+    day: uptime(daily),
+    week: uptime(weekly),
+    month: uptime(monthly)
   }
 }
 
@@ -33,6 +33,11 @@ function monthlyPings(ping) {
 function uptime(pings) {
   let uptimeMiliseconds = 0;
   let downtimeMiliseconds = 0;
+
+  //If there is only one ping we have to assume a 200 means it's 100% up
+  if (pings.length === 1) {
+    return pings[0].response === 200 ? 100 : 0;
+  }
 
   for (let i = 1; i < pings.length; i++) {
     let duration = moment(pings[i].pingedAt).diff(moment(pings[i - 1].pingedAt));

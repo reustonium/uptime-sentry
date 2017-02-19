@@ -8,12 +8,16 @@ let moment = require('moment');
 describe('Uptime', () => {
 
   describe('calculateUptime', () => {
-    it('should return 100, 98 and 97', () => {
-      expect(1).to.equal(1);
-      expect(Uptime.calculateUptime([{}, {}])).to.eql({
+    it('should return 100 for a single good ping', () => {
+      let pings = [{
+        response: 200,
+        responseTime: 100,
+        pingedAt: moment().subtract(1, 'minute')
+      }]
+      expect(Uptime.calculateUptime(pings)).to.eql({
         day: 100,
-        week: 98,
-        month: 97
+        week: 100,
+        month: 100
       });
     });
   });
