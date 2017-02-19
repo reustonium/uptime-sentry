@@ -48,7 +48,7 @@ function uptime(pings) {
     }
   }
 
-  return uptimeMiliseconds * 100 / (uptimeMiliseconds + downtimeMiliseconds)
+  return Math.round(uptimeMiliseconds * 1000 / (uptimeMiliseconds + downtimeMiliseconds)) / 10;
 }
 
 module.exports = {

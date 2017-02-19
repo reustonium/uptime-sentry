@@ -3,6 +3,7 @@ let Agenda = require('agenda');
 let request = require('request');
 let Job = require('./model/job');
 let Uptime = require('./uptime');
+let moment = require('moment');
 
 let agenda = new Agenda({
   db: {
@@ -36,11 +37,17 @@ agenda.define('ping', function(agendaJob, done) {
       if (err) {
         console.log('ERROR!: ' + err);
       } else {
-        job.status = response.statusCode === 200 ? 'up' : 'down';
+        //if the request had an error (timeout?) then change how we set the status
+        let status = error ? 'down' : response.statusCode === 200 ? 'up' : 'down';
+        let pingResponse = error ? 504 : response.statusCode;
+        let pingResponseTime = error ? 10000 : response.elapsedTime;
+        let pingPingedAt = error ? moment() : response.responseStartTime;
+
+        job.status = status
         job.pings.push({
-          response: response.statusCode,
-          responseTime: response.elapsedTime,
-          pingedAt: response.responseStartTime
+          response: pingResponse,
+          responseTime: pingResponseTime,
+          pingedAt: pingPingedAt
         });
 
         // Calculate Uptimes
