@@ -30,6 +30,7 @@ export default {
 .animated {
   animation-duration: .3s;
 }
+$body-background: whitesmoke;
 @import '~bulma';
 $fa-font-path: '~font-awesome/fonts/';
 @import '~font-awesome/scss/font-awesome';
