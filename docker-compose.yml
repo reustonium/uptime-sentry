@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  client:
+    build: uptime_sentry_client
+    ports:
+      - "8080:8080"
+  server:
+    build: uptime_sentry_server
+    ports:
+      - "3000:3000"
+    links:
+      - database
+    environment:
+      - NODE_ENV=docker
+  database:
+    image: mongo
+    ports:
+      - "27017:27017"
