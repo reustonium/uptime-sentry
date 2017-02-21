@@ -30,6 +30,7 @@
             <th>Last 24h</th>
             <th>Last 7d</th>
             <th>Last 30d</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -47,6 +48,9 @@
             </td>
             <td :class="{good: monitor.uptimes.month >= 98, bad: monitor.uptimes.month < 98}">
               <strong>{{monitor.uptimes.month}}%</strong>
+            </td>
+            <td>
+              <a class="button is-danger is-outlined" @click="removeJob(monitor._id)">x</a>
             </td>
           </tr>
         </tbody>
@@ -70,6 +74,12 @@ export default {
       this.$http.get('http://localhost:3000/job/').then(res => {
         console.log(JSON.stringify(res.body))
         this.monitors = res.body
+      })
+    },
+    removeJob (monitor) {
+      this.$http.delete('http://localhost:3000/job/?id=' + monitor).then(res => {
+        console.log(JSON.stringify(res.body))
+        this.fetchData()
       })
     }
   }

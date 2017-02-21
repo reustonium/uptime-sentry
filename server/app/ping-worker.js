@@ -58,7 +58,6 @@ agenda.define('ping', function(agendaJob, done) {
           if (err) {
             console.log('ERROR' + err);
           }
-          console.log('SUCCESS' + job);
         });
       }
     });

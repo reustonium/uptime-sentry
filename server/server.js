@@ -33,7 +33,8 @@ app.route('/job')
   .get(job.getJobs)
   .post(job.postJob);
 app.route('/job/:id')
-  .get(job.getJob);
+  .get(job.getJob)
+  .delete(job.deleteJob);
 app.listen(3000);
 
 module.exports = app;
