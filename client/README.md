@@ -1,6 +1,6 @@
-# uptime-web
+# uptime-sentry-web
 
-> webapp for uptime
+> webapp for uptime sentry
 
 ## Build Setup
 

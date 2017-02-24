@@ -1,7 +1,7 @@
 {
-  "name": "uptime-web",
+  "name": "uptime-sentry-web",
   "version": "0.1.0",
-  "description": "webapp for uptime",
+  "description": "webapp for monitoring your websites",
   "author": "reustonium <andrew.ruestow@gmail.com>",
   "private": true,
   "scripts": {

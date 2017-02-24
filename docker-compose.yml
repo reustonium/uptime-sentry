@@ -2,11 +2,11 @@ version: '2'
 
 services:
   client:
-    image: uptime-client:dev
+    image: uptime-sentry-client:dev
     ports:
       - "8080:8080"
   server:
-    image: uptime-server:dev
+    image: uptime-sentry-server:dev
     ports:
       - "3000:3000"
     links:

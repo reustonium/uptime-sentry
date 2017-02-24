@@ -19,7 +19,7 @@ Ensure that your `pull request` has followed all the steps below:
 
 ## Proposed changes
 
-> Why is Uptime improved by accepting this pull request? If it solves an existing issue please link to that issue.
+> Why is Uptime Sentry improved by accepting this pull request? If it solves an existing issue please link to that issue.
 
 ### Types of changes
 

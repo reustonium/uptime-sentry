@@ -1,6 +1,6 @@
-# Contributing to Uptime
+# Contributing to Uptime Sentry
 
-The following is a set of guidelines for contributing to Uptime.
+The following is a set of guidelines for contributing to Uptime Sentry.
 These are just guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
 
 #### Table Of Contents
@@ -25,7 +25,7 @@ These are just guidelines, not rules. Use your best judgment, and feel free to p
 
 ### Reporting Bugs
 
-This section guides you through submitting a bug report for Uptime.  Before creating bug reports please check that the [issue](https://github.com/reustonium/uptime/issues?utf8=✓&q=is%3Aissue) hasn't already been created. When you are creating a bug report, please [include as many details as possible](#how-do-i-submit-a-good-bug-report). Fill out [the required template](ISSUE_TEMPLATE), the information it asks for helps us resolve issues faster.
+This section guides you through submitting a bug report for Uptime Sentry.  Before creating bug reports please check that the [issue](https://github.com/reustonium/uptime-sentry/issues?utf8=✓&q=is%3Aissue) hasn't already been created. When you are creating a bug report, please [include as many details as possible](#how-do-i-submit-a-good-bug-report). Fill out [the required template](ISSUE_TEMPLATE), the information it asks for helps us resolve issues faster.
 
 #### How Do I Submit A (Good) Bug Report?
 
@@ -42,9 +42,9 @@ Explain the problem and include additional details to help maintainers reproduce
 
 ### Suggesting Enhancements
 
-This section guides you through submitting an enhancement suggestion for Uptime, including completely new features and minor improvements to existing functionality.
+This section guides you through submitting an enhancement suggestion for Uptime Sentry, including completely new features and minor improvements to existing functionality.
 
-Before creating enhancement suggestions please check that the enhancement hasn't already been [created.](https://github.com/reustonium/uptime/issues?utf8=✓&q=is%3Aissue) If it has, add a comment to the existing issue instead of opening a new one.  When you are creating an enhancement suggestion, please [include as many details as possible](#how-do-i-submit-a-good-enhancement-suggestion). Fill in [the template](ISSUE_TEMPLATE), including the steps that you imagine you would take if the feature you're requesting existed.
+Before creating enhancement suggestions please check that the enhancement hasn't already been [created.](https://github.com/reustonium/uptime-sentry/issues?utf8=✓&q=is%3Aissue) If it has, add a comment to the existing issue instead of opening a new one.  When you are creating an enhancement suggestion, please [include as many details as possible](#how-do-i-submit-a-good-enhancement-suggestion). Fill in [the template](ISSUE_TEMPLATE), including the steps that you imagine you would take if the feature you're requesting existed.
 
 #### How Do I Submit A (Good) Enhancement Suggestion?
 
@@ -58,7 +58,7 @@ Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com
 
 ### Your First Code Contribution
 
-Unsure where to begin contributing to Uptime? You can start by looking through these [help-wanted issues](help-wanted).
+Unsure where to begin contributing to Uptime Sentry? You can start by looking through these [help-wanted issues](help-wanted).
 
 ### Pull Requests
 

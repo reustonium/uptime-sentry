@@ -1,7 +1,7 @@
 ### Prerequisites
 
 Checked that your issue isn't already filed:
-[Uptime Issues](https://github.com/reustonium/uptime/issues?utf8=✓&q=is%3Aissue)
+[Uptime Sentry Issues](https://github.com/reustonium/uptime-sentry/issues?utf8=✓&q=is%3Aissue)
 
 ### Description
 
