@@ -4,7 +4,7 @@
       <nav class="nav has-shadow">
         <div class="nav-center">
           <router-link to="/" class="nav-item hero-header">
-            <span class="uptime">Uptime</span> <strong class="webapp">Webapp</strong>
+            <span class="uptime">Uptime Sentry</span> <strong class="webapp">Webapp</strong>
           </router-link>
         </div>
       </nav>
