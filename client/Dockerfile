@@ -10,6 +10,8 @@ WORKDIR /usr/src/client
 COPY package.json /usr/src/client
 
 # Install dependecies
+RUN apt-get update
+RUN apt-get install bzip2
 RUN npm install -g yarn
 RUN yarn
 
