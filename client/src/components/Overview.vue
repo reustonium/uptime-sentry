@@ -72,7 +72,6 @@ export default {
   methods: {
     fetchData () {
       this.$http.get('http://localhost:3000/job/').then(res => {
-        console.log(JSON.stringify(res.body))
         this.monitors = res.body
       })
     },

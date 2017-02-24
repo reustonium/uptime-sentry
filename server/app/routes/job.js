@@ -18,6 +18,11 @@ function getJobs(req, res) {
 // ***************************
 function postJob(req, res) {
   let newJob = new Job(req.body);
+  newJob.uptimes = {
+    day: 100,
+    week: 100,
+    month: 100
+  }
   newJob.status = 'created';
   newJob.save((err, job) => {
     if (err) {
