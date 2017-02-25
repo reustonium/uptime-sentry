@@ -76,7 +76,7 @@ export default {
       })
     },
     removeJob (monitor) {
-      this.$http.delete('http://localhost:3000/job/?id=' + monitor).then(res => {
+      this.$http.delete('http://localhost:3000/job/' + monitor).then(res => {
         console.log(JSON.stringify(res.body))
         this.fetchData()
       })

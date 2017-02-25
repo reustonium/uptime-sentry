@@ -58,17 +58,17 @@ function getJob(req, res) {
 // DELETE /job/:id route to remove job by id
 // *****************************************
 function deleteJob(req, res) {
-  console.log('TRYING TO DELETE SHIT');
-  console.log(JSON.stringify(res));
-  // Job.remove({_id: req.params.id}, (err, result) => {
-  //   console.log(JSON.stringify(err));
-  //   if(err) res.send(err)
-  //   res.send(
-  //     {
-  //       message:'successfully removed job',
-  //       result
-  //     });
-  // })
+  Job.remove({
+    _id: req.params.id
+  }, (err, result) => {
+    console.log(JSON.stringify(err));
+    if (err) res.send(err)
+    res.send(
+      {
+        message: 'successfully removed job',
+        result
+      });
+  })
 
 }
 
