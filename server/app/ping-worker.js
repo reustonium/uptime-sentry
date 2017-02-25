@@ -71,6 +71,13 @@ function createJob(job) {
     jobId: job._id.toString()
   }).repeatEvery(job.freq + ' minutes').save();
 }
+
+function cancelJob(jobId) {
+  agenda.cancel({
+    "data.jobId": jobId
+  });
+}
 module.exports = {
-  createJob
+  createJob,
+  cancelJob
 }

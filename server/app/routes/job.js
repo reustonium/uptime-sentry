@@ -1,4 +1,3 @@
-let mongoose = require('mongoose');
 let Job = require('../model/job');
 let pingWorker = require('../ping-worker');
 
@@ -61,15 +60,14 @@ function deleteJob(req, res) {
   Job.remove({
     _id: req.params.id
   }, (err, result) => {
-    console.log(JSON.stringify(err));
     if (err) res.send(err)
-    res.send(
-      {
-        message: 'successfully removed job',
-        result
-      });
-  })
 
+    pingWorker.cancelJob(req.params.id);
+    res.send({
+      message: 'successfully removed job',
+      result
+    });
+  });
 }
 
 module.exports = {
