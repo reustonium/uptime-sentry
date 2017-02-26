@@ -58,7 +58,7 @@ Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com
 
 ### Your First Code Contribution
 
-Unsure where to begin contributing to Uptime Sentry? You can start by looking through these [help-wanted issues](help-wanted).
+Unsure where to begin contributing to Uptime Sentry? You can start by looking through these [help-wanted issues](https://github.com/reustonium/uptime-sentry/labels/help%20wanted).
 
 ### Pull Requests
 
