@@ -29,7 +29,7 @@ This section guides you through submitting a bug report for Uptime Sentry.  Befo
 
 #### How Do I Submit A (Good) Bug Report?
 
-Bugs are tracked as [GitHub issues](https://guides.github.com/features/issues/). Create an issue and provide the following information by filling in [the template](ISSUE_TEMPLATE).
+Bugs are tracked as [GitHub issues](https://guides.github.com/features/issues/). Create an issue and provide the following information by filling in [the template](ISSUE_TEMPLATE.md).
 
 Explain the problem and include additional details to help maintainers reproduce the problem:
 
@@ -44,7 +44,7 @@ Explain the problem and include additional details to help maintainers reproduce
 
 This section guides you through submitting an enhancement suggestion for Uptime Sentry, including completely new features and minor improvements to existing functionality.
 
-Before creating enhancement suggestions please check that the enhancement hasn't already been [created.](https://github.com/reustonium/uptime-sentry/issues?utf8=✓&q=is%3Aissue) If it has, add a comment to the existing issue instead of opening a new one.  When you are creating an enhancement suggestion, please [include as many details as possible](#how-do-i-submit-a-good-enhancement-suggestion). Fill in [the template](ISSUE_TEMPLATE), including the steps that you imagine you would take if the feature you're requesting existed.
+Before creating enhancement suggestions please check that the enhancement hasn't already been [created.](https://github.com/reustonium/uptime-sentry/issues?utf8=✓&q=is%3Aissue) If it has, add a comment to the existing issue instead of opening a new one.  When you are creating an enhancement suggestion, please [include as many details as possible](#how-do-i-submit-a-good-enhancement-suggestion). Fill in [the template](ISSUE_TEMPLATE.md), including the steps that you imagine you would take if the feature you're requesting existed.
 
 #### How Do I Submit A (Good) Enhancement Suggestion?
 
@@ -62,7 +62,7 @@ Unsure where to begin contributing to Uptime Sentry? You can start by looking th
 
 ### Pull Requests
 
-* Fill in [the required template](PULL_REQUEST_TEMPLATE)
+* Fill in [the required template](PULL_REQUEST_TEMPLATE.md)
 * Include screenshots and animated GIFs in your pull request whenever possible.
 * Follow the [JavaScript](#javascript-styleguide) styleguide.
 * Include thoughtfully-worded, well-structured tests, Run them using `npm test`. See the [Specs Styleguide](#specs-styleguide) below.
