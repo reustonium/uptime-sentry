@@ -19,6 +19,7 @@ This repository contains:
 - [Background](#background)
 - [Prerequisites](#Prerequisites)
 - [Running Uptime Sentry](#running-uptime-sentry)
+- [Running Uptime Sentry in Development Mode](#running-uptime-sentry-in-development-mode)
 - [Usage](#usage)
   - [Adding a Monitor](#adding-a-monitor)
 - [Contribute](#contribute)
@@ -31,8 +32,8 @@ Uptime Sentry's purpose is to provide a light-weight application for monitoring 
 
 ## Prerequisites
 
-* Docker
-* Docker-Compose
+* [Docker](https://docs.docker.com/engine/installation/)
+* [Docker-Compose](https://docs.docker.com/compose/install/)
 
 ## Running Uptime Sentry
 
@@ -43,6 +44,19 @@ Uptime Sentry's purpose is to provide a light-weight application for monitoring 
 `docker-compose up`
 
 3. Point your browser to `localhost:8080`
+
+## Running Uptime Sentry in Development Mode
+
+> Prerequisites include mongodb, nodejs, and a modern web browser.
+
+1. Start mongodb
+2. Start the Server
+  - Install yarn `npm install -g yarn`
+  - Install server dependencies `cd server && yarn`
+  - Start the server (from the `\server` directory) `yarn server`
+3. Start the client
+  - Install client dependencies (from the `\client` directory) `yarn`
+  - Start the Client (from the `\client` directory) `yarn dev`
 
 ## Usage
 
