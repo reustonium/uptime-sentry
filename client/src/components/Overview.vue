@@ -33,26 +33,26 @@
             <th>Delete</th>
           </tr>
         </thead>
-        <tbody>
-          <tr class="title is-4" v-for="monitor in monitors">
-            <td>{{monitor.name}}</td>
-            <td :class="{up: monitor.status === 'up', down: monitor.status !== 'up', created: monitor.status === 'created'}">
-              {{monitor.status}}
-            </td>
-            <td>{{monitor.freq}} minutes</td>
-            <td :class="{good: monitor.uptimes.day >= 98, bad: monitor.uptimes.day < 98}">
-              <strong>{{monitor.uptimes.day}}%</strong>
-            </td>
-            <td :class="{good: monitor.uptimes.week >= 98, bad: monitor.uptimes.week < 98}">
-              <strong>{{monitor.uptimes.week}}%</strong>
-            </td>
-            <td :class="{good: monitor.uptimes.month >= 98, bad: monitor.uptimes.month < 98}">
-              <strong>{{monitor.uptimes.month}}%</strong>
-            </td>
-            <td>
-              <a class="button is-danger is-outlined" @click="removeJob(monitor._id)">x</a>
-            </td>
-          </tr>
+        <tbody name="table-row" is="transition-group" leave-active-class="animated fadeOutRight">
+            <tr class="title is-4" v-for="monitor in monitors" :key="monitor.name">
+              <td>{{monitor.name}}</td>
+              <td :class="{up: monitor.status === 'up', down: monitor.status !== 'up', created: monitor.status === 'created'}">
+                {{monitor.status}}
+              </td>
+              <td>{{monitor.freq}} minutes</td>
+              <td :class="{good: monitor.uptimes.day >= 98, bad: monitor.uptimes.day < 98}">
+                <strong>{{monitor.uptimes.day}}%</strong>
+              </td>
+              <td :class="{good: monitor.uptimes.week >= 98, bad: monitor.uptimes.week < 98}">
+                <strong>{{monitor.uptimes.week}}%</strong>
+              </td>
+              <td :class="{good: monitor.uptimes.month >= 98, bad: monitor.uptimes.month < 98}">
+                <strong>{{monitor.uptimes.month}}%</strong>
+              </td>
+              <td>
+                <a class="button is-danger is-outlined" @click="removeJob(monitor._id)">x</a>
+              </td>
+            </tr>
         </tbody>
       </table>
     </div>
@@ -95,30 +95,29 @@ export default {
     text-align: center;
     vertical-align: middle;
   }
-
   th {
     text-align: center;
     vertical-align: middle;
   }
-
   .good {
     color: $green;
   }
-
   .bad {
     color: $orange;
   }
-
   .up {
     background: $green;
   }
-
   .down {
     background: $orange;
   }
-
   .created {
     background: $primary;
   }
+}
+
+//List Animations
+.animated {
+  animation-duration: 0.666s;
 }
 </style>
