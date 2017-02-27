@@ -3,6 +3,7 @@ let Agenda = require('agenda');
 let request = require('request');
 let Job = require('./model/job');
 let Uptime = require('./uptime');
+let EventManager = require('./event-manager');
 let moment = require('moment');
 
 let agenda = new Agenda({
@@ -53,6 +54,8 @@ agenda.define('ping', function(agendaJob, done) {
         // Calculate Uptimes
         job.uptimes = Uptime.calculateUptime(job.pings)
 
+        // Check for Up/Down Events
+
         // Save the job
         job.save((err, job) => {
           if (err) {
@@ -66,6 +69,9 @@ agenda.define('ping', function(agendaJob, done) {
 });
 
 function createJob(job) {
+  // Create the Job's "Created Event"
+  EventManager.jobCreatedEvent(job);
+
   agenda.create('ping', {
     url: job.url,
     jobId: job._id.toString()
