@@ -25,7 +25,7 @@ These are just guidelines, not rules. Use your best judgment, and feel free to p
 
 ### Reporting Bugs
 
-This section guides you through submitting a bug report for Uptime Sentry.  Before creating bug reports please check that the [issue](https://github.com/reustonium/uptime-sentry/issues?utf8=✓&q=is%3Aissue) hasn't already been created. When you are creating a bug report, please [include as many details as possible](#how-do-i-submit-a-good-bug-report). Fill out [the required template](ISSUE_TEMPLATE), the information it asks for helps us resolve issues faster.
+This section guides you through submitting a bug report for Uptime Sentry.  Before creating bug reports please check that the [issue](https://github.com/reustonium/uptime-sentry/issues?utf8=✓&q=is%3Aissue) hasn't already been created. When you are creating a bug report, please [include as many details as possible](#how-do-i-submit-a-good-bug-report). Fill out [the required template](ISSUE_TEMPLATE.md), the information it asks for helps us resolve issues faster.
 
 #### How Do I Submit A (Good) Bug Report?
 
