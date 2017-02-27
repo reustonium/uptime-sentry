@@ -4,6 +4,7 @@
       <nav class="nav has-shadow">
         <div class="nav-center">
           <router-link to="/" class="nav-item hero-header">
+            <img src="~assets/logo.png" alt="">
             <span class="uptime">Uptime Sentry</span> <strong class="webapp">Webapp</strong>
           </router-link>
         </div>
