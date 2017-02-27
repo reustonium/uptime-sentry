@@ -6,6 +6,7 @@ let cors = require('cors');
 let bodyParser = require('body-parser');
 let config = require('config');
 let job = require('./app/routes/job');
+let event = require('./app/routes/event')
 
 // ********
 // Database
@@ -35,6 +36,8 @@ app.route('/job')
 app.route('/job/:id')
   .get(job.getJob)
   .delete(job.deleteJob);
+app.route('/event')
+  .get(event.getEvents);
 app.listen(3000);
 
 module.exports = app;
