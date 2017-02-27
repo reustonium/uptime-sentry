@@ -2,11 +2,11 @@ version: '2'
 
 services:
   client:
-    image: uptime-sentry-client:dev
+    image: reustonium/uptime-sentry-client:dev
     ports:
       - "8080:8080"
   server:
-    image: uptime-sentry-server:dev
+    image: reustonium/uptime-sentry-server:dev
     ports:
       - "3000:3000"
     links:
