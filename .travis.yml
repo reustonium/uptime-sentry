@@ -4,9 +4,6 @@ node_js:
   - node
 services:
   - mongodb
-before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash
-  - export PATH=$HOME/.yarn/bin:$PATH
 script:
-  - cd server && yarn install && yarn test
-  - yarn coverage
+  - cd server && npm install && npm run test
+  - npm run coverage
