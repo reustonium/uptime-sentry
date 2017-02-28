@@ -11,6 +11,7 @@ script:
   - docker build -t reustonium/uptime-sentry-server:dev .
   - cd ../client
   - docker build -t reustonium/uptime-sentry-client:dev .
+  - echo "$TRAVIS_BRANCH"
 after_success:
   - if [ "$TRAVIS_BRANCH" == "develop" ]; then
     docker login -u="$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
