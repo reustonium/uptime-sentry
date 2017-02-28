@@ -47,7 +47,7 @@ export default {
   methods: {
     fetchData () {
       this.$http.get('http://localhost:3000/event/').then(res => {
-        this.events = res.body
+        this.events = res.body.reverse()
       })
     }
   },
