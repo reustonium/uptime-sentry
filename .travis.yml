@@ -1,9 +1,19 @@
-sudo: false
+sudo: true
 language: node_js
 node_js:
   - node
 services:
   - mongodb
+  - docker
 script:
   - cd server && npm install && npm run test
   - npm run coverage
+  - docker build -t reustonium/uptime-sentry-server:dev
+  - cd ../client
+  - docker build -t reustonium/uptime-sentry-client:dev
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "develop" ]; then
+    docker login -u="$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+    docker push reustonium/uptime-sentry-server:dev
+    docker push reustonium/uptime-sentry-client:dev
+    fi
