@@ -2,6 +2,7 @@ let config = require('config');
 let Agenda = require('agenda');
 let request = require('request');
 let Job = require('./model/job');
+let StatusEvent = require('./model/status-event');
 let Uptime = require('./uptime');
 let EventManager = require('./event-manager');
 let moment = require('moment');
@@ -38,8 +39,13 @@ agenda.define('ping', function(agendaJob, done) {
       if (err) {
         console.log('ERROR!: ' + err);
       } else {
+
+
         //if the request had an error (timeout?) then change how we set the status
         let status = error ? 'down' : response.statusCode === 200 ? 'up' : 'down';
+        // Check for Up/Down Status Events
+        createStatusEvent(jobId, job.status, status);
+
         let pingResponse = error ? 504 : response.statusCode;
         let pingResponseTime = error ? 10000 : response.elapsedTime;
         let pingPingedAt = error ? moment() : response.responseStartTime;
@@ -54,8 +60,6 @@ agenda.define('ping', function(agendaJob, done) {
         // Calculate Uptimes
         job.uptimes = Uptime.calculateUptime(job.pings)
 
-        // Check for Up/Down Events
-
         // Save the job
         job.save((err, job) => {
           if (err) {
@@ -69,8 +73,8 @@ agenda.define('ping', function(agendaJob, done) {
 });
 
 function createJob(job) {
-  // Create the Job's "Created Event"
-  EventManager.jobCreatedEvent(job);
+  // Create the Job's "Created Status Event"
+  EventManager.jobCreatedStatusEvent(job);
 
   agenda.create('ping', {
     url: job.url,
@@ -82,6 +86,12 @@ function cancelJob(jobId) {
   agenda.cancel({
     "data.jobId": jobId
   });
+}
+
+function createStatusEvent(jobId, previousStatus, currentStatus) {
+  if (previousStatus !== currentStatus) {
+
+  }
 }
 module.exports = {
   createJob,
