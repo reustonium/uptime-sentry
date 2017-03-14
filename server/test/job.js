@@ -151,7 +151,6 @@ describe('Jobs', () => {
         chai.request(server)
           .get('/job/' + job.id)
           .end((err, res) => {
-            console.log(JSON.stringify());
             res.should.have.status(200);
             res.should.be.a('object');
             res.body.should.have.property('url');
