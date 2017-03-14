@@ -22,10 +22,6 @@ let StatusEventSchema = new Schema(
     reason: {
       type: String,
       required: true
-    },
-    duration: {
-      type: String,
-      required: true
     }
   },
   {
@@ -33,4 +29,4 @@ let StatusEventSchema = new Schema(
   }
 );
 
-module.exports = mongoose.model('status-event', StatusEventSchema);
+module.exports = mongoose.model('statusEvent', StatusEventSchema);

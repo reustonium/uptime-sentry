@@ -40,17 +40,16 @@ agenda.define('ping', function(agendaJob, done) {
         console.log('ERROR!: ' + err);
       } else {
 
-
         //if the request had an error (timeout?) then change how we set the status
         let status = error ? 'down' : response.statusCode === 200 ? 'up' : 'down';
-        let pingPingedAt = error ? moment() : response.responseStartTime;
-
-        // Check for Up/Down Status Events
-        let duration = job.pings.length > 0 ? pingPingedAt - job.pings[job.pings.length - 1] : 0;
-        createStatusEvent(jobId, job.name, job.status, status, duration);
-
+        let pingPingedAt = error ? moment() : moment(response.timingStart);
         let pingResponse = error ? 504 : response.statusCode;
         let pingResponseTime = error ? 10000 : response.elapsedTime;
+
+        // Check for Up/Down Status Events
+        if (status !== job.status) {
+          createStatusEvent(jobId, job.name, status, pingPingedAt);
+        }
 
         job.status = status
         job.pings.push({
@@ -90,20 +89,19 @@ function cancelJob(jobId) {
   });
 }
 
-function createStatusEvent(jobId, jobName, previousStatus, currentStatus, duration) {
-  if (previousStatus !== currentStatus) {
-    let statusEvent = new StatusEvent({
-      jobId: jobId,
-      name: jobName,
-      status: currentStatus,
-      date: moment(),
-      reason: currentStatus,
-      duration: duration
-    });
+function createStatusEvent(jobId, jobName, status, pingedAt) {
 
-    statusEvent.save();
-  }
+  let statusEvent = new StatusEvent({
+    jobId: jobId,
+    name: jobName,
+    status: status,
+    date: pingedAt,
+    reason: status
+  });
+
+  statusEvent.save();
 }
+
 module.exports = {
   createJob,
   cancelJob
