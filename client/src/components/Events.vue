@@ -45,9 +45,27 @@ export default {
     }
   },
   methods: {
+    prettyTime (milliseconds) {
+      let prettyTime = ''
+      if (milliseconds < 60 * 60 * 1000) {
+        prettyTime = Math.round(milliseconds / (60 * 1000)) + ' minutes'
+      }
+      if (milliseconds < 60 * 1000) {
+        prettyTime = Math.round(milliseconds / 1000) + ' seconds'
+      }
+      return prettyTime
+    },
     fetchData () {
       this.$http.get('http://localhost:3000/event/').then(res => {
-        this.events = res.body
+        let events = res.body
+        for (var i = 0; i < events.length; i++) {
+          if (i + 1 < events.length) {
+            events[i].duration = this.prettyTime(moment(events[i + 1].date).diff(moment(events[i].date)))
+          } else {
+            events[i].duration = this.prettyTime(moment().diff(moment(events[i].date)))
+          }
+        }
+        this.events = events.reverse()
       })
     }
   },

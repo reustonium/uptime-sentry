@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
-let EventSchema = new Schema(
+let StatusEventSchema = new Schema(
   {
     jobId: {
       type: String,
@@ -22,10 +22,6 @@ let EventSchema = new Schema(
     reason: {
       type: String,
       required: true
-    },
-    duration: {
-      type: String,
-      required: true
     }
   },
   {
@@ -33,4 +29,4 @@ let EventSchema = new Schema(
   }
 );
 
-module.exports = mongoose.model('event', EventSchema);
+module.exports = mongoose.model('statusEvent', StatusEventSchema);

@@ -1,8 +1,8 @@
 let moment = require('moment');
-let Event = require('./model/event');
+let StatusEvent = require('./model/status-event');
 
-function jobCreatedEvent(job) {
-  let newEvent = new Event({
+function jobCreatedStatusEvent(job) {
+  let newStatusEvent = new StatusEvent({
     jobId: job._id.toString(),
     name: job.name,
     status: job.status,
@@ -11,10 +11,12 @@ function jobCreatedEvent(job) {
     duration: "0 seconds"
   });
 
-  newEvent.save((err, event) => {
+  newStatusEvent.save((err, statusEvent) => {
     console.log(err);
-    console.log(event);
+    console.log(statusEvent);
   });
 }
 
-module.exports = {jobCreatedEvent}
+module.exports = {
+  jobCreatedStatusEvent
+}

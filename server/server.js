@@ -37,7 +37,7 @@ app.route('/job/:id')
   .get(job.getJob)
   .delete(job.deleteJob);
 app.route('/event')
-  .get(event.getEvents);
+  .get(event.getStatusEvents);
 app.listen(3000);
 
 module.exports = app;

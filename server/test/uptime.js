@@ -20,6 +20,43 @@ describe('Uptime', () => {
         month: 100
       });
     });
+
+    it('should return 0 for a single bad ping', () => {
+      let pings = [{
+        response: 404,
+        responseTime: 100,
+        pingedAt: moment().subtract(1, 'minute')
+      }]
+
+      expect(Uptime.calculateUptime(pings)).to.eql({
+        day: 0,
+        week: 0,
+        month: 0
+      });
+    });
+
+    it('should return 50 for three pings of equal up and down time', () => {
+
+      let pings = [{
+        response: 200,
+        responseTime: 10,
+        pingedAt: moment().hours(0).minutes(0).seconds(0)
+      }, {
+        response: 404,
+        responseTime: 10,
+        pingedAt: moment().hours(0).minutes(1).seconds(0)
+      }, {
+        response: 200,
+        responseTime: 10,
+        pingedAt: moment().hours(0).minutes(2).seconds(0)
+      }]
+
+      expect(Uptime.calculateUptime(pings)).to.be.eql({
+        day: 50,
+        week: 50,
+        month: 50
+      });
+    });
   });
 
   describe('dailyPings', () => {
